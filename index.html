@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<body>
+<input type="text" id="UserFirstName">
+<input type="text" id="UserLastName">
+
+<a onclick="ClickMe()">Click Me</a>
+<div id="result"></div>
+
+<script>
+// Check browser support
+
+
+function ClickMe()
+{
+		var userfname = document.getElementById("UserFirstName").value;
+		var userlname = document.getElementById("UserLastName").value;
+		 //localStorage.setItem("firstname", userfname);
+		 //localStorage.setItem("lastname", userlname);
+		document.cookies=userfname
+		//window.location.href="getdata.html";
+		alert(userfname);
+		//document.cookie = "username="+userfname + "lastname="+userlname;
+		setCookie("username", userfname,30);
+		var user=getCookie("username");
+		alert(user);
+	return false;
+}
+function setCookie(cname,cvalue,exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires=" + d.toGMTString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+</script>
+
+</body>
+</html>
